@@ -4841,11 +4841,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zhuma\\Desktop\\инфа\\WebApplication2\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\zhuma\\Desktop\\инфа\\WebApplication2\\Apirep\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\zhuma\\Desktop\\инфа\\WebApplication2\\DataAccess\\DataAccess.csproj",
+      "projectPath": "C:\\Users\\zhuma\\Desktop\\инфа\\WebApplication2\\Apirep\\DataAccess\\DataAccess.csproj",
       "packagesPath": "C:\\Users\\zhuma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zhuma\\Desktop\\инфа\\WebApplication2\\DataAccess\\obj\\",
+      "outputPath": "C:\\Users\\zhuma\\Desktop\\инфа\\WebApplication2\\Apirep\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\zhuma\\AppData\\Roaming\\NuGet\\NuGet.Config",

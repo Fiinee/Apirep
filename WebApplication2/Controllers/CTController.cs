@@ -39,13 +39,12 @@ namespace WebApplication2.Controllers
             var model1 = new CommentTour()
             {
                 CommentText = model.CommentText,
-                Agency = model.Agency,
-
+                TourPlan = model.TourPlan,
             };
 
-            bool IdExist = Context.Agencies.Any(x => x.Id == model1.Agency);
-            if (!IdExist) return BadRequest("такого агенства нет");
-            Context.CommentAgencies.Add(model1);
+            bool IdExist = Context.TourPlans.Any(x => x.Id == model1.TourPlan);
+            if (!IdExist) return BadRequest("такого плана тура нет");
+            Context.CommentTours.Add(model1);
             Context.SaveChanges();
             return Ok(model1);
         }
@@ -56,24 +55,24 @@ namespace WebApplication2.Controllers
             {
                 CommentId = model.CommentId,
                 CommentText = model.CommentText,
-                Agency = model.Agency,
+                TourPlan = model.TourPlan
 
             };
 
             bool ComExist = Context.CommentAgencies.Any(x => x.CommentId == model1.CommentId);
             if (!ComExist) return BadRequest("такого комментария нет");
-            bool IdExist = Context.Agencies.Any(x => x.Id == model1.Agency);
-            if (!IdExist) return BadRequest("такого агенства нет");
-            Context.CommentAgencies.Update(model1);
+            bool IdExist = Context.TourPlans.Any(x => x.Id == model1.TourPlan);
+            if (!IdExist) return BadRequest("такого плана тура нет");
+            Context.CommentTours.Update(model1);
             Context.SaveChanges();
             return Ok(model1);
         }
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            CommentAgency? model = Context.CommentAgencies.Where(x => x.CommentId == id).FirstOrDefault();
+            CommentTour? model = Context.CommentTours.Where(x => x.CommentId == id).FirstOrDefault();
             if (model == null) return BadRequest("not found");
-            Context.CommentAgencies.Remove(model);
+            Context.CommentTours.Remove(model);
             Context.SaveChanges();
             return Ok(model);
         }
