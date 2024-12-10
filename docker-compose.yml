@@ -15,7 +15,7 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:80
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionString = Server=localhost;Database=practika;TrustServerCertificate=True; Trusted_Connection=True
+      - ConnectionString=Server=db;Database=dbtest;User=sa;Password=Your_password123;MultipleActiveResultSets=True;Encrypt=False;Persist Security Info=False
     ports:
       - "5000:80"
     depends_on:

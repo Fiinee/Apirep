@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SvQzVSYqnktw9fQ9ouekDz6mt0xJ5B7O0JrC6yUyhPD+HV1lk92cpQKnRFp3HNmr5nkdQIpkVzNc72xbrmZoSQ==",
+  "dgSpecHash": "KMcp4hK4kFVAsCEr9RryWxx7f6BUGLKZkpaTSOhah/2QqRK6fCUpvc6kU4CTo8vmo7jyBp5jYi022nIsE/kI8g==",
   "success": true,
   "projectFilePath": "C:\\Users\\zhuma\\Desktop\\инфа\\WebApplication2\\Apirep\\WebApplication2\\WebApplication2.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,7 @@
     "C:\\Users\\zhuma\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\9.0.0\\microsoft.entityframeworkcore.relational.9.0.0.nupkg.sha512",
     "C:\\Users\\zhuma\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\9.0.0\\microsoft.entityframeworkcore.sqlserver.9.0.0.nupkg.sha512",
     "C:\\Users\\zhuma\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver.nettopologysuite\\9.0.0\\microsoft.entityframeworkcore.sqlserver.nettopologysuite.9.0.0.nupkg.sha512",
+    "C:\\Users\\zhuma\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\9.0.0\\microsoft.entityframeworkcore.tools.9.0.0.nupkg.sha512",
     "C:\\Users\\zhuma\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\zhuma\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.0\\microsoft.extensions.caching.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\zhuma\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.0\\microsoft.extensions.caching.memory.9.0.0.nupkg.sha512",
