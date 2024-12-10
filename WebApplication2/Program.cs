@@ -21,6 +21,13 @@ namespace WebApplication2
 
             var app = builder.Build();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<PractikaContext>();
+                context.Database.Migrate();
+            }
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -28,7 +35,7 @@ namespace WebApplication2
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+           app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
