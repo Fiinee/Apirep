@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Models;
+using static System.Net.WebRequestMethods;
 
 namespace WebApplication2
 {
@@ -35,7 +36,7 @@ namespace WebApplication2
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157" })
+            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157", "https://apirep-1.onrender.com" })
             .AllowAnyHeader() 
             .AllowAnyMethod());
             
