@@ -141,7 +141,7 @@ section {
     section h1 {
         text-transform: uppercase;
         font-weight: 900;
-        color: #b32121; /*עמכסעûם בףךגû מûנמכûפאנכגûמאנכûגמנאכמ*/
+        color: #90bdda; /*עמכסעûם בףךגû מûנמכûפאנכגûמאנכûגמנאכמ*/
         text-align: left;
         margin-bottom: 20px;
     }
@@ -154,6 +154,7 @@ section {
 button {
     max-width: 50%;
     border-radius: 50px !important;
+    background-color: #7fb865;
 }
 
 #hero .col {
@@ -164,7 +165,8 @@ button {
 
 #hero .img-col {
     justify-content: flex-end;
-    margin-top: 100px;
+    margin-top: 10px;
+
 }
 
 #hero img {
@@ -175,7 +177,7 @@ button {
 
 /* Styling for the cards */
 #hero .card {
-    box-shadow: 11px 7px 16px #f9f9f9;
+    box-shadow: 11px 7px 16px #f8f8f8;
     border: 0;
     text-align: center;
 }
@@ -186,8 +188,8 @@ button {
 
 /* Styling for Icons if added */
 #hero .icon {
-    width: 50px;
-    height: 50px;
+    width: 240px;
+    height: 340px;
     margin-bottom: 20px;
 }
 
@@ -199,7 +201,7 @@ button {
 /* contact section styling */
 #contact {
     text-align: center;
-    background-color: #ff006e;
+    background-color: #7fb865;
     color: white;
 }
 
