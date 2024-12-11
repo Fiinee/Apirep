@@ -1,7 +1,5 @@
-
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Models;
-using static System.Net.WebRequestMethods;
 
 namespace WebApplication2
 {
@@ -11,17 +9,25 @@ namespace WebApplication2
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<PractikaContext>(options => options.UseSqlServer(builder.Configuration["ConnectionString"]));
-
-            // Add services to the container.
+            builder.Services.AddDbContext<PractikaContext>(options =>
+                options.UseSqlServer(builder.Configuration["ConnectionString"]));
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigins",
+                    builder => builder.WithOrigins("https://localhost:7157", "https://apirep-1.onrender.com")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod());
+            });
+
             var app = builder.Build();
 
+            
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -29,23 +35,17 @@ namespace WebApplication2
                 context.Database.Migrate();
             }
 
-            // Configure the HTTP request pipeline.
+           
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157", "https://apirep-1.onrender.com" })
-            .AllowAnyHeader() 
-            .AllowAnyMethod());
-            
+            app.UseCors("AllowSpecificOrigins");
 
-           app.UseHttpsRedirection();
-
+            app.UseHttpsRedirection();
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
