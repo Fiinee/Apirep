@@ -141,7 +141,7 @@ section {
     section h1 {
         text-transform: uppercase;
         font-weight: 900;
-        color: #683aa4;
+        color: #b32121; /*עמכסעûם בףךגû מûנמכûפאנכגûמאנכûגמנאכמ*/
         text-align: left;
         margin-bottom: 20px;
     }
@@ -199,7 +199,7 @@ button {
 /* contact section styling */
 #contact {
     text-align: center;
-    background-color: #683aa4;
+    background-color: #ff006e;
     color: white;
 }
 

@@ -1,12 +1,40 @@
-﻿@page "/Account"
+﻿@page "/account"
 
 <PageTitle>Account</PageTitle>
 
 
-@foreach (var user in result)
-{
-    <p>@user.Name</p>
-}
+<section id="">
+    <div class="container">
+        <p>Текущее время: @CurrentTime</p>
+        <p>Текущая дата: @CurrentDate</p>
+
+        <h1>Пользователи</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in result)
+                {
+                    <tr>
+                        <th scope="row">@user.Id</th>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>@user.Password</td>
+                       
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
 
 @code {
     public class Account
@@ -17,12 +45,20 @@
         public string Password { get; set; }
     }
     public Account[] result = new Account[] { };
+    string CurrentDate;
+    string CurrentTime;
 
     protected override async Task OnInitializedAsync()
     {
+        var date = DateTime.Now;
+        CurrentDate = date.ToShortDateString();
+        CurrentTime = date.ToShortTimeString();
+
         var client = new HttpClient();
-        client.BaseAddress = new Uri("https://apirep.onrender.com/");
+        client.BaseAddress = new Uri("https://apirep.onrender.com");
+
         result = await client.GetFromJsonAsync<Account[]>("api/Account");
+
         return;
     }
 }
