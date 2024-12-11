@@ -1,0 +1,28 @@
+﻿@page "/Account"
+
+<PageTitle>Account</PageTitle>
+
+
+@foreach (var user in result)
+{
+    <p>@user.Name</p>
+}
+
+@code {
+    public class Account
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+    public Account[] result = new Account[] { };
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = new HttpClient();
+        client.BaseAddress = new Uri("https://apirep.onrender.com/");
+        result = await client.GetFromJsonAsync<Account[]>("api/Account");
+        return;
+    }
+}

@@ -35,6 +35,11 @@ namespace WebApplication2
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157" })
+            .AllowAnyHeader() 
+            .AllowAnyMethod());
+            
+
            app.UseHttpsRedirection();
 
             app.UseAuthorization();

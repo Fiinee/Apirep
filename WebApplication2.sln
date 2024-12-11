@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication2", "WebAppli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C1C2C2BF-237D-471F-B28A-769412C4C38F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{DBB6D8BD-8924-48DD-8565-69723702D486}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB6D8BD-8924-48DD-8565-69723702D486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB6D8BD-8924-48DD-8565-69723702D486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB6D8BD-8924-48DD-8565-69723702D486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB6D8BD-8924-48DD-8565-69723702D486}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

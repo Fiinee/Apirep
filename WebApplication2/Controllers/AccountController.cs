@@ -15,12 +15,14 @@ namespace WebApplication2.Controllers
         public string Password { get; set; } 
     }
 
-        [Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
         public PractikaContext Context { get; set; }
         public AccountController(PractikaContext context) { Context = context; }
+
+   
 
         [HttpGet]
         public IActionResult Get()
