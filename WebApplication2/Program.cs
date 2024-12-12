@@ -38,12 +38,13 @@ namespace WebApplication2
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157" })
+            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157", "https://apirep-2.onrender.com" })
             .AllowAnyHeader()
             .AllowAnyOrigin()
             .AllowAnyMethod());
 
-       
+           
+
 
             app.UseHttpsRedirection();
 
