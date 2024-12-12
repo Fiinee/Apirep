@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Models;
@@ -41,6 +42,8 @@ namespace WebApplication2
             .AllowAnyHeader()
             .AllowAnyOrigin()
             .AllowAnyMethod());
+
+       
 
             app.UseHttpsRedirection();
 
