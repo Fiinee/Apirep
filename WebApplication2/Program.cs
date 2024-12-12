@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Models;
 using static System.Net.WebRequestMethods;
@@ -14,17 +15,13 @@ namespace WebApplication2
             builder.Services.AddDbContext<PractikaContext>(options => options.UseSqlServer(builder.Configuration["ConnectionString"]));
 
             // Add services to the container.
-            var app = builder.Build();
-            builder.Services.AddControllers();  
-            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157", "https://apirep-1.onrender.com" })
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowAnyOrigin());
+
+            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-           ;
+            var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
             {
@@ -40,10 +37,15 @@ namespace WebApplication2
                 app.UseSwaggerUI();
             }
 
-         
+            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157" })
+            .AllowAnyHeader()
+            .AllowAnyOrigin()
+            .AllowAnyMethod());
 
 
-            app.UseHttpsRedirection();
+
+
+           app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
@@ -51,6 +53,3 @@ namespace WebApplication2
             app.MapControllers();
 
             app.Run();
-        }
-    }
-}
