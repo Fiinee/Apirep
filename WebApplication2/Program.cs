@@ -16,10 +16,7 @@ namespace WebApplication2
             // Add services to the container.
             var app = builder.Build();
             builder.Services.AddControllers();  
-            app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157", "https://apirep-1.onrender.com" })
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowAnyOrigin());
+          
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -39,7 +36,10 @@ namespace WebApplication2
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+              app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157", "https://apirep-1.onrender.com" })
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin());
          
 
 
