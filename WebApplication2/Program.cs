@@ -18,7 +18,8 @@ namespace WebApplication2
             builder.Services.AddControllers();  
             app.UseCors(builder => builder.WithOrigins(new[] { "https://localhost:7157", "https://apirep-1.onrender.com" })
             .AllowAnyHeader()
-            .AllowAnyMethod());
+            .AllowAnyMethod()
+            .AllowAnyOrigin());
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
