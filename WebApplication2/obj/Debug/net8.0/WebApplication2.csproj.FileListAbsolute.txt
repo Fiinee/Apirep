@@ -206,7 +206,6 @@ C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -229,8 +228,6 @@ C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Mono.TextTemplating.dll
-C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\NetTopologySuite.dll
-C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\NetTopologySuite.IO.SqlServerBytes.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
