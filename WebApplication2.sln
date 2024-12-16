@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{EA2BF861-E861-4BD0-834E-FFBB03BC9972}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C1C2C2BF-237D-471F-B28A-769412C4C38F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{DBB6D8BD-8924-48DD-8565-69723702D486}"
@@ -21,10 +19,6 @@ Global
 		{EA2BF861-E861-4BD0-834E-FFBB03BC9972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA2BF861-E861-4BD0-834E-FFBB03BC9972}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA2BF861-E861-4BD0-834E-FFBB03BC9972}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1C2C2BF-237D-471F-B28A-769412C4C38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1C2C2BF-237D-471F-B28A-769412C4C38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1C2C2BF-237D-471F-B28A-769412C4C38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1C2C2BF-237D-471F-B28A-769412C4C38F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FB7876F-1AED-4D28-9E1B-5F3A57D8AAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU

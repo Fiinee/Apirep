@@ -332,8 +332,6 @@ C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\DataAccess.dll
-C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\bin\Debug\net8.0\DataAccess.pdb
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\zhuma\Desktop\инфа\WebApplication2\Apirep\WebApplication2\obj\Debug\net8.0\staticwebassets\msbuild.WebApplication2.Microsoft.AspNetCore.StaticWebAssets.props

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication2.Models;
+using WebApplication2.DataAccess.Models;
 
 namespace WebApplication2.Controllers
 {
