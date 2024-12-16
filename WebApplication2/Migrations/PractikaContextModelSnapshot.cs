@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication2.DataAccess.Models;
 
 
+
 #nullable disable
 
 namespace WebApplication2.Migrations
