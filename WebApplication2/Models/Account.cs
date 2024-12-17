@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using WebApplication2.Entities;
 
 namespace WebApplication2.DataAccess.Models
 {
