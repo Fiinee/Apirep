@@ -9,15 +9,16 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication2.Authorization
 {
     public class JwtUtils : IJwtUtils
     {
-        private readonly IRepositoryWrapper _wrapper;
+        private readonly PractikaContext _wrapper;
         private readonly AppSettings _appSettings;
 
-        public JwtUtils(IRepositoryWrapper wrapper, AppSettings appSettings)
+        public JwtUtils(PractikaContext wrapper, AppSettings appSettings)
         {
             _wrapper = wrapper;
             _appSettings = appSettings;
@@ -46,8 +47,9 @@ namespace WebApplication2.Authorization
                 Created = DateTime.UtcNow,
                 CreatedByIp = ipAddress
             };
-            var tokrnIsUnique =(await _wrapper.Accounts.Where(a => a.RefreshTokens.Any(t => t.Token == refreshToken.Token))).CountAsync == 0;
-            if (!tokrnIsUnique) return await GenerateRefreshToken(ipAddress);
+            
+            var tokenIsUnique = (await _wrapper.Accounts.Where(a => a.RefreshTokens.Any(t => t.Token == refreshToken.Token)).CountAsync()) == 0;
+            if (!tokenIsUnique) return await GenerateRefreshToken(ipAddress);
             return refreshToken;
         }
 
