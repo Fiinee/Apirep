@@ -156,21 +156,6 @@ namespace WebApplication2.Services
             return _mapper.Map<AccountResponse>(account);
 
         }
-        public Task Register(RegisterRequest model, string origin)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task ResetPassword(ResetPasswordRequest model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RevokeToken(string token, string ipAddress)
-        {
-            throw new NotImplementedException();
-        }
-        
         private async Task<Account> getAccountByRefreshToken(string token)
         {
             var account = (_repositoryWrapper.Accounts.Where(x => x.RefreshTokens.Any(
@@ -241,23 +226,66 @@ namespace WebApplication2.Services
             return token;
         }
 
-        public async Task Register(RegisterRequest model,  string username, string origin)
+        public async Task Register(RegisterRequest model, string origin)
         {
-            var count = await _repositoryWrapper.Accounts.Where(x => x.VerificationToken == token).CountAsync();
+            var count = await _repositoryWrapper.Accounts.Where(x => x.Email==model.Email).CountAsync();
 
             if (count > 0) return;
             var account = _mapper.Map<Account>(model);
             var isFirstAccount = (await _repositoryWrapper.Accounts.CountAsync() == 0);
+            account.Role = isFirstAccount ? Role.Admin : Role.User;
+            account.Verified = DateTime.UtcNow;
+            account.VerificationToken = await generateVerificationToken();
+            account.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
+            _repositoryWrapper.Accounts.Add(account);
+            await _repositoryWrapper.SaveChangesAsync();
+        
         }
 
-        public Task ValidateResetToken(ValidateResetTokenRequest model)
+        private async Task<Account> getAccountByResetToken(string token)
         {
-            throw new NotImplementedException();
+            var account = (_repositoryWrapper.Accounts.Where(x => x.ResetToken == token
+            && x.ResetTokenExpires > DateTime.UtcNow)).SingleOrDefault();
+            if (account == null) throw new AppException("Invalid token");
+            return account;
+        } 
+
+        public async Task ResetPassword(ResetPasswordRequest model)
+        {
+            var account = await getAccountByResetToken(model.Token);
+            account.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+            account.PasswordReset = DateTime.UtcNow;
+            account.ResetTokenExpires = null;
+            account.ResetToken = null;
+            _repositoryWrapper.Accounts.Update(account);
+            await _repositoryWrapper.SaveChangesAsync();
         }
 
-        public Task VerifyEmail(string token)
+        public async Task RevokeToken(string token, string ipAddress)
         {
-            throw new NotImplementedException();
+            var account = await getAccountByResetToken(token);
+            var refreshToken = account.RefreshTokens.Single(x => x.Token == token);
+
+            if (!refreshToken.IsActive) throw new AppException("Invalid token");
+            revokeRefreshToken(refreshToken, ipAddress, "Revoked within reeplacement");
+            _repositoryWrapper.Accounts.Update(account);
+            await _repositoryWrapper.SaveChangesAsync();
+        }
+
+        public async Task ValidateResetToken(ValidateResetTokenRequest model)
+        {
+            await getAccountByResetToken(model.Token);
+        }
+
+        public async Task VerifyEmail(string token)
+        {
+            var account  = _repositoryWrapper.Accounts.FirstOrDefault(x=> x.VerificationToken == token);
+            if (account == null) throw new AppException("Verification failed");
+            account.Verified = DateTime.UtcNow;
+            account.VerificationToken = null;
+            _repositoryWrapper.Accounts.Update(account);
+            await _repositoryWrapper.SaveChangesAsync();
         }
     }
 }
