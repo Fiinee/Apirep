@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
+using WebApplication2.Authorization;
 using WebApplication2.DataAccess.Models;
+using WebApplication2.Helpers;
+using WebApplication2.Services;
 using static System.Net.WebRequestMethods;
 
 namespace WebApplication2
@@ -14,6 +17,14 @@ namespace WebApplication2
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContext<PractikaContext>(options => options.UseSqlServer(builder.Configuration["ConnectionString"]));
+
+
+            builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+            builder.Services.AddScoped<IJwtUtils, JwtUtils>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
+
+
 
             // Add services to the container.
 
