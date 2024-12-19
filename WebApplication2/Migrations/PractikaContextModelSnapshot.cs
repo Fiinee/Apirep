@@ -26,7 +26,6 @@ namespace WebApplication2.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(250)
                         .HasColumnType("int")
                         .HasColumnName("id");
 
@@ -320,11 +319,7 @@ namespace WebApplication2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Account")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("AccountId")
+                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
@@ -463,9 +458,13 @@ namespace WebApplication2.Migrations
 
             modelBuilder.Entity("WebApplication2.Entities.RefreshToken", b =>
                 {
-                    b.HasOne("WebApplication2.DataAccess.Models.Account", null)
+                    b.HasOne("WebApplication2.DataAccess.Models.Account", "Account")
                         .WithMany("RefreshTokens")
-                        .HasForeignKey("AccountId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("WebApplication2.DataAccess.Models.Account", b =>

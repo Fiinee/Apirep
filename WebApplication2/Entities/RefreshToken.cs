@@ -1,9 +1,10 @@
-﻿namespace WebApplication2.Entities
+﻿using WebApplication2.DataAccess.Models;
+namespace WebApplication2.Entities
 {
     public class RefreshToken
     {
         public int Id { get; set; }
-        public string Account { get; set; }
+        public  Account Account { get; set; }
         public string Token { get; set; }
         public DateTime Expires { get; set; }
         public DateTime Created { get; set; }

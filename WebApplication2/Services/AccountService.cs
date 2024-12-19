@@ -42,8 +42,8 @@ namespace WebApplication2.Services
 
         public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest model, string ipAddress)
         {
-            var account = await _repositoryWrapper.Accounts.AsNoTracking().FirstOrDefaultAsync(x => x.Email == model.Email);
-           // var account = await _repositoryWrapper.Accounts.Include(x => x.ResetToken).AsNoTracking().FirstOrDefaultAsync(x => x.Email == model.Email);
+            //var account = await _repositoryWrapper.Accounts.AsNoTracking().FirstOrDefaultAsync(x => x.Email == model.Email);
+            var account = await _repositoryWrapper.Accounts.Include(x => x.RefreshTokens).AsNoTracking().FirstOrDefaultAsync(x => x.Email == model.Email);
             if (account == null || !account.IsVerified || !BCrypt.Net.BCrypt.Verify(model.Password, account.Password))
                 throw new AppException("Email or password is incorrect");
 
@@ -233,25 +233,22 @@ namespace WebApplication2.Services
 
         public async Task Register(RegisterRequest model, string origin)
         {
-           var count = await _repositoryWrapper.Accounts.Where(x => x.Email==model.Email).CountAsync();
-            if (count > 0) return;
+            string email = model.Email;
+            if (await _repositoryWrapper.Accounts.AnyAsync(x => x.Email == email))
+                return;
+          
             var account = _mapper.Map<Account>(model);
-            var isFirstAccount = (await _repositoryWrapper.Accounts.CountAsync() == 0);
+            var isFirstAccount = !(await _repositoryWrapper.Accounts.AnyAsync(x=>x.Email==model.Email));
+            account.Name = model.Name;
             account.Role = isFirstAccount ? Role.Admin : Role.User;
             account.Verified = DateTime.UtcNow;
+            account.Created = DateTime.UtcNow;
             account.VerificationToken = await generateVerificationToken();
             account.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
 
-            try
-            {
                 await _repositoryWrapper.Accounts.AddAsync(account);
                 await _repositoryWrapper.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new AppException("Invalid token");
-
-            }
+           
         }
 
         private async Task<Account> getAccountByResetToken(string token)

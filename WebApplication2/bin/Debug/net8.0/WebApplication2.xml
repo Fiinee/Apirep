@@ -64,5 +64,17 @@
         <member name="M:WebApplication2.Migrations.ChangeLen2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:WebApplication2.Migrations.Acc">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.Acc.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.Acc.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.Acc.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>
