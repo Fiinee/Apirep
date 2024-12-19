@@ -18,10 +18,10 @@ namespace WebApplication2.Authorization
         private readonly PractikaContext _wrapper;
         private readonly AppSettings _appSettings;
 
-        public JwtUtils(PractikaContext wrapper, AppSettings appSettings)
+        public JwtUtils(PractikaContext wrapper, IOptions<AppSettings> appSettings)
         {
             _wrapper = wrapper;
-            _appSettings = appSettings;
+            _appSettings = appSettings.Value;
         }
 
         public string GenerateJwtToken(Account account)

@@ -69,6 +69,7 @@ namespace WebApplication2.Controllers
         public async Task<IActionResult> Register (RegisterRequest model)
         {
             await _accountService.Register(model, Request.Headers["origin"]);
+          
             return Ok(new { message = "Registration successful, please check your email for verifiction instruction" });
         }
         [AllowAnonymous]
@@ -112,20 +113,22 @@ namespace WebApplication2.Controllers
         public async Task<ActionResult<AccountResponse>> Create(CreateRequest model)
         {
             var account = await _accountService.Create(model);
+           
             return Ok(account);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpPut("{id:int}")]
         public async Task<ActionResult<AccountResponse>> Update(int id, UpdateRequest model)
         {
             if (id != Account.Id && Account.Role != Role.Admin)
                 return Unauthorized(new { message = "Unauthorized" });
+           
             if (Account.Role == Role.Admin)
                 model.Role = null;
             var account = await _accountService.Update(id, model);
             return Ok(account);
         }
-        [HttpGet("{id:int}")]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult<AccountResponse>> Delete(int id)
         {
             if (id != Account.Id && Account.Role != Role.Admin)

@@ -6,8 +6,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication2.DataAccess.Models;
 
-
-
 #nullable disable
 
 namespace WebApplication2.Migrations
@@ -24,10 +22,11 @@ namespace WebApplication2.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WebApplication2.Models.Account", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasMaxLength(250)
                         .HasColumnType("int")
                         .HasColumnName("id");
 
@@ -77,7 +76,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("Account", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Agency", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Agency", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,7 +103,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("Agency", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.City", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,7 +129,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.CommentAgency", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.CommentAgency", b =>
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
@@ -156,7 +155,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("CommentAgency", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.CommentTour", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.CommentTour", b =>
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
@@ -183,7 +182,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("CommentTour", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Country", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Country", b =>
                 {
                     b.Property<string>("Name")
                         .HasMaxLength(50)
@@ -198,7 +197,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Guide", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Guide", b =>
                 {
                     b.Property<int>("EmployeeCode")
                         .ValueGeneratedOnAdd()
@@ -226,7 +225,94 @@ namespace WebApplication2.Migrations
                     b.ToTable("Guide", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.RefreshToken", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Tour2", b =>
+                {
+                    b.Property<int>("TourCode")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Tour_code");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TourCode"));
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime")
+                        .HasColumnName("Date_time");
+
+                    b.Property<int>("GuideCode")
+                        .HasColumnType("int")
+                        .HasColumnName("Guide_code");
+
+                    b.Property<int>("TourPlan")
+                        .HasColumnType("int")
+                        .HasColumnName("Tour_Plan");
+
+                    b.HasKey("TourCode")
+                        .HasName("PK__Tour2__EC54E201A0361FC1");
+
+                    b.HasIndex("GuideCode");
+
+                    b.HasIndex("TourPlan");
+
+                    b.ToTable("Tour2", (string)null);
+                });
+
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.TourPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int")
+                        .HasColumnName("City_id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id")
+                        .HasName("PK__Tour_Pla__737584F71D297A01");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Tour_Plan", (string)null);
+                });
+
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.UsersCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("TourCode")
+                        .HasColumnType("int")
+                        .HasColumnName("Tour_code");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("User_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK__Users_ca__C737CA77DB1A17A1");
+
+                    b.HasIndex("TourCode");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Users_cart", (string)null);
+                });
+
+            modelBuilder.Entity("WebApplication2.Entities.RefreshToken", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -274,96 +360,9 @@ namespace WebApplication2.Migrations
                     b.ToTable("RefreshToken");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Tour2", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.City", b =>
                 {
-                    b.Property<int>("TourCode")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Tour_code");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TourCode"));
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime")
-                        .HasColumnName("Date_time");
-
-                    b.Property<int>("GuideCode")
-                        .HasColumnType("int")
-                        .HasColumnName("Guide_code");
-
-                    b.Property<int>("TourPlan")
-                        .HasColumnType("int")
-                        .HasColumnName("Tour_Plan");
-
-                    b.HasKey("TourCode")
-                        .HasName("PK__Tour2__EC54E201A0361FC1");
-
-                    b.HasIndex("GuideCode");
-
-                    b.HasIndex("TourPlan");
-
-                    b.ToTable("Tour2", (string)null);
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.TourPlan", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CityId")
-                        .HasColumnType("int")
-                        .HasColumnName("City_id");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id")
-                        .HasName("PK__Tour_Pla__737584F71D297A01");
-
-                    b.HasIndex("CityId");
-
-                    b.ToTable("Tour_Plan", (string)null);
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.UsersCart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("TourCode")
-                        .HasColumnType("int")
-                        .HasColumnName("Tour_code");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int")
-                        .HasColumnName("User_id");
-
-                    b.HasKey("Id")
-                        .HasName("PK__Users_ca__C737CA77DB1A17A1");
-
-                    b.HasIndex("TourCode");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Users_cart", (string)null);
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.City", b =>
-                {
-                    b.HasOne("WebApplication2.Models.Country", "CountryNavigation")
+                    b.HasOne("WebApplication2.DataAccess.Models.Country", "CountryNavigation")
                         .WithMany("Cities")
                         .HasForeignKey("Country")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -373,9 +372,9 @@ namespace WebApplication2.Migrations
                     b.Navigation("CountryNavigation");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.CommentAgency", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.CommentAgency", b =>
                 {
-                    b.HasOne("WebApplication2.Models.Agency", "AgencyNavigation")
+                    b.HasOne("WebApplication2.DataAccess.Models.Agency", "AgencyNavigation")
                         .WithMany("CommentAgencies")
                         .HasForeignKey("Agency")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -385,9 +384,9 @@ namespace WebApplication2.Migrations
                     b.Navigation("AgencyNavigation");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.CommentTour", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.CommentTour", b =>
                 {
-                    b.HasOne("WebApplication2.Models.TourPlan", "TourPlanNavigation")
+                    b.HasOne("WebApplication2.DataAccess.Models.TourPlan", "TourPlanNavigation")
                         .WithMany("CommentTours")
                         .HasForeignKey("TourPlan")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -397,9 +396,9 @@ namespace WebApplication2.Migrations
                     b.Navigation("TourPlanNavigation");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Guide", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Guide", b =>
                 {
-                    b.HasOne("WebApplication2.Models.Agency", "AgencyNavigation")
+                    b.HasOne("WebApplication2.DataAccess.Models.Agency", "AgencyNavigation")
                         .WithMany("Guides")
                         .HasForeignKey("Agency")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -409,22 +408,15 @@ namespace WebApplication2.Migrations
                     b.Navigation("AgencyNavigation");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.RefreshToken", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Tour2", b =>
                 {
-                    b.HasOne("WebApplication2.Models.Account", null)
-                        .WithMany("RefreshTokens")
-                        .HasForeignKey("AccountId");
-                });
-
-            modelBuilder.Entity("WebApplication2.Models.Tour2", b =>
-                {
-                    b.HasOne("WebApplication2.Models.Guide", "GuideCodeNavigation")
+                    b.HasOne("WebApplication2.DataAccess.Models.Guide", "GuideCodeNavigation")
                         .WithMany("Tour2s")
                         .HasForeignKey("GuideCode")
                         .IsRequired()
                         .HasConstraintName("FK__Tour2__Guide_cod__5629CD9C");
 
-                    b.HasOne("WebApplication2.Models.TourPlan", "TourPlanNavigation")
+                    b.HasOne("WebApplication2.DataAccess.Models.TourPlan", "TourPlanNavigation")
                         .WithMany("Tour2s")
                         .HasForeignKey("TourPlan")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -436,9 +428,9 @@ namespace WebApplication2.Migrations
                     b.Navigation("TourPlanNavigation");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.TourPlan", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.TourPlan", b =>
                 {
-                    b.HasOne("WebApplication2.Models.City", "City")
+                    b.HasOne("WebApplication2.DataAccess.Models.City", "City")
                         .WithMany("TourPlans")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -448,16 +440,16 @@ namespace WebApplication2.Migrations
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.UsersCart", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.UsersCart", b =>
                 {
-                    b.HasOne("WebApplication2.Models.Tour2", "TourCodeNavigation")
+                    b.HasOne("WebApplication2.DataAccess.Models.Tour2", "TourCodeNavigation")
                         .WithMany("UsersCarts")
                         .HasForeignKey("TourCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK__Users_car__Tour___59FA5E80");
 
-                    b.HasOne("WebApplication2.Models.Account", "User")
+                    b.HasOne("WebApplication2.DataAccess.Models.Account", "User")
                         .WithMany("UsersCarts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -469,41 +461,48 @@ namespace WebApplication2.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Account", b =>
+            modelBuilder.Entity("WebApplication2.Entities.RefreshToken", b =>
+                {
+                    b.HasOne("WebApplication2.DataAccess.Models.Account", null)
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("AccountId");
+                });
+
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Account", b =>
                 {
                     b.Navigation("RefreshTokens");
 
                     b.Navigation("UsersCarts");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Agency", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Agency", b =>
                 {
                     b.Navigation("CommentAgencies");
 
                     b.Navigation("Guides");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.City", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.City", b =>
                 {
                     b.Navigation("TourPlans");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Country", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Country", b =>
                 {
                     b.Navigation("Cities");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Guide", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Guide", b =>
                 {
                     b.Navigation("Tour2s");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.Tour2", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.Tour2", b =>
                 {
                     b.Navigation("UsersCarts");
                 });
 
-            modelBuilder.Entity("WebApplication2.Models.TourPlan", b =>
+            modelBuilder.Entity("WebApplication2.DataAccess.Models.TourPlan", b =>
                 {
                     b.Navigation("CommentTours");
 
