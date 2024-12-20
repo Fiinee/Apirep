@@ -88,5 +88,17 @@
         <member name="M:WebApplication2.Migrations.Stef.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:WebApplication2.Migrations.helphelp">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.helphelp.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.helphelp.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.helphelp.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

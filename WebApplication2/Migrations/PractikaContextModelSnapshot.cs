@@ -326,7 +326,6 @@ namespace WebApplication2.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedByIp")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Expires")
