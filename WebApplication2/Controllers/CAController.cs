@@ -23,7 +23,7 @@ namespace WebApplication2.Controllers
         public CAController(PractikaContext context) { Context = context; }
 
 
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {
@@ -40,7 +40,7 @@ namespace WebApplication2.Controllers
             if (country == null) return BadRequest("такого id нет");
             return Ok(country);
         }
-         [AllowAnonymous]
+       
         [HttpPost]
         public IActionResult Add(CommentAgencyModel model)
         {
@@ -57,7 +57,7 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
-        [AllowAnonymous]
+       
         [HttpPut]
         public IActionResult Update(CommentAgencyModel model)
         {
@@ -77,7 +77,7 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
-        [AllowAnonymous]
+       
         [HttpDelete]
         public IActionResult Delete(int id)
         {

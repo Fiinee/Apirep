@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.DataAccess.Models;
+using WebApplication2.Authorization;
+using WebApplication2.Entities;
 
 namespace WebApplication2.Controllers
 {
@@ -12,10 +14,10 @@ namespace WebApplication2.Controllers
 
         
     }
-
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class CountryController : ControllerBase
+    public class CountryController : BaseController
     {
         public PractikaContext Context { get; set; }
         public CountryController(PractikaContext context) { Context = context; }
@@ -33,6 +35,8 @@ namespace WebApplication2.Controllers
             if (country == null) return BadRequest("такой страны нет");
             return Ok(country);
         }
+        [Authorize(Role.Admin)]
+        // [AllowAnonymous]
         [HttpPost]
         public IActionResult Add(CountryModel model)
         {
@@ -47,6 +51,8 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
+        [Authorize(Role.Admin)]
+        // [AllowAnonymous]
         [HttpPut]
         public IActionResult Update(CountryModel model)
         {
@@ -62,6 +68,8 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
+        [Authorize(Role.Admin)]
+        // [AllowAnonymous]
         [HttpDelete]
         public IActionResult Delete(string name)
         {

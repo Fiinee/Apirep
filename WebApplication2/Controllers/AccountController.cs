@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication2.Authorization;
 using WebApplication2.DataAccess.Models;
 
 namespace WebApplication2.Controllers
@@ -15,17 +16,17 @@ namespace WebApplication2.Controllers
 
         public string Password { get; set; } 
     }
-
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
  
-    public class AccountController : ControllerBase
+    public class AccountController : BaseController
     {
         public PractikaContext Context { get; set; }
         public AccountController(PractikaContext context) { Context = context; }
 
-   
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {

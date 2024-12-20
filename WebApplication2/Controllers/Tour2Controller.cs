@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.DataAccess.Models;
+using WebApplication2.Authorization;
 
 namespace WebApplication2.Controllers
 {
@@ -13,8 +14,8 @@ namespace WebApplication2.Controllers
         public int GuideCode { get; set; }
 
         public DateTime DateTime { get; set; }
-    } 
-
+    }
+    [Authorize]
         [Route("api/[controller]")]
     [ApiController]
     public class Tour2Controller : ControllerBase

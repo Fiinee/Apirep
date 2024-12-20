@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.DataAccess.Models;
+using WebApplication2.Authorization;
 
 namespace WebApplication2.Controllers
 {
@@ -12,6 +13,7 @@ namespace WebApplication2.Controllers
 
         public int TourCode { get; set; }
     }
+    [Authorize]
         [Route("api/[controller]")]
     [ApiController]
     public class UsersCartController : ControllerBase
@@ -19,6 +21,7 @@ namespace WebApplication2.Controllers
         public PractikaContext Context { get; set; }
         public UsersCartController(PractikaContext context) { Context = context; }
 
+        
         [HttpGet]
         public IActionResult Get()
         {

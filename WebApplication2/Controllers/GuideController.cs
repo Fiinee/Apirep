@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication2.Authorization;
 using WebApplication2.DataAccess.Models;
+using WebApplication2.Entities;
 
 namespace WebApplication2.Controllers
 {
@@ -15,19 +17,24 @@ namespace WebApplication2.Controllers
         public double Rating { get; set; }
     }
 
+    [Authorize]
         [Route("api/[controller]")]
     [ApiController]
-    public class GuideController : ControllerBase
+    public class GuideController : BaseController
     {
         public PractikaContext Context { get; set; }
         public GuideController(PractikaContext context) { Context = context; }
 
+       // [Authorize(Role.Admin)]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {
             List<Guide> list = Context.Guides.ToList();
             return Ok(list);
         }
+       // [Authorize(Role.Admin)]
+         [AllowAnonymous]
         [HttpGet("get-by-id")]
         public IActionResult GetId(int id)
         {
@@ -35,6 +42,8 @@ namespace WebApplication2.Controllers
             if (country == null) return BadRequest("not found");
             return Ok(country);
         }
+        [Authorize(Role.Admin)]
+        // [AllowAnonymous]
         [HttpPost]
         public IActionResult Add(GuideModel model)
         {
@@ -51,6 +60,8 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
+        [Authorize(Role.Admin)]
+        // [AllowAnonymous]
         [HttpPut]
         public IActionResult Update(GuideModel model)
         {
@@ -70,6 +81,8 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
+        [Authorize(Role.Admin)]
+        // [AllowAnonymous]
         [HttpDelete]
         public IActionResult Delete(int id)
         {

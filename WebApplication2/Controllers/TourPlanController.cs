@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.DataAccess.Models;
+using WebApplication2.Authorization;
 
 namespace WebApplication2.Controllers
 {
@@ -16,6 +17,7 @@ namespace WebApplication2.Controllers
         public double Rating { get; set; }
 
     }
+    [Authorize]
         [Route("api/[controller]")]
     [ApiController]
     public class TourPlanController : ControllerBase
