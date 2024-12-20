@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication2.Authorization;
 using WebApplication2.DataAccess.Models;
+using WebApplication2.Entities;
 
 namespace WebApplication2.Controllers
 {
@@ -12,13 +14,15 @@ namespace WebApplication2.Controllers
 
         public string CommentText { get; set; }
     }
-
-        [Route("api/[controller]")]
+    [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
-    public class CAController : ControllerBase
+    public class CAController :BaseController 
     {
         public PractikaContext Context { get; set; }
         public CAController(PractikaContext context) { Context = context; }
+
+
 
         [HttpGet]
         public IActionResult Get()
@@ -26,6 +30,9 @@ namespace WebApplication2.Controllers
             List<CommentAgency> list = Context.CommentAgencies.ToList();
             return Ok(list);
         }
+
+       
+        [AllowAnonymous]
         [HttpGet("get-by-id")]
         public IActionResult GetId(int id)
         {
@@ -33,6 +40,7 @@ namespace WebApplication2.Controllers
             if (country == null) return BadRequest("такого id нет");
             return Ok(country);
         }
+         [AllowAnonymous]
         [HttpPost]
         public IActionResult Add(CommentAgencyModel model)
         {
@@ -49,6 +57,7 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
+        [AllowAnonymous]
         [HttpPut]
         public IActionResult Update(CommentAgencyModel model)
         {
@@ -68,6 +77,7 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
+        [AllowAnonymous]
         [HttpDelete]
         public IActionResult Delete(int id)
         {
