@@ -94,8 +94,8 @@ namespace WebApplication2.Controllers
             await _accountService.ValidateResetToken(model);
             return Ok(new { message = "Token is valid" });
         }
-      //[Authorize(Role.Admin)]
-        [AllowAnonymous]
+      [Authorize(Role.Admin)]
+       // [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AccountResponse>>> GetAll()
         {

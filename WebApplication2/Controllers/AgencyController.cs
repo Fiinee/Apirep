@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.DataAccess.Models;
+using WebApplication2.Entities;
+using WebApplication2.Authorization;
 
 namespace WebApplication2.Controllers
 {
@@ -14,20 +16,23 @@ namespace WebApplication2.Controllers
 
         public double Rating { get; set; }
     }
-
-        [Route("api/[controller]")]
+    [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
-    public class AgencyController : ControllerBase
+    public class AgencyController : BaseController
     {
         public PractikaContext Context { get; set; }
         public AgencyController(PractikaContext context) { Context = context; }
 
+       
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {
             List<Agency> list = Context.Agencies.ToList();
             return Ok(list);
         }
+        [AllowAnonymous]
         [HttpGet("get-by-id")]
         public IActionResult GetId(int id)
         {
@@ -35,6 +40,8 @@ namespace WebApplication2.Controllers
             if (country == null) return BadRequest("такого агенства нет");
             return Ok(country);
         }
+
+        [Authorize(Role.Admin)]
         [HttpPost]
         public IActionResult Add(AgencyModel model)
         {
@@ -51,6 +58,7 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
+        [Authorize(Role.Admin)]
         [HttpPut]
         public IActionResult Update(AgencyModel model)
         {
@@ -70,6 +78,7 @@ namespace WebApplication2.Controllers
             Context.SaveChanges();
             return Ok(model1);
         }
+        [Authorize(Role.Admin)]
         [HttpDelete]
         public IActionResult Delete(int id)
         {
