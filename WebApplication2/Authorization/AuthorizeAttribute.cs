@@ -2,6 +2,7 @@
 using WebApplication2.Entities;
 using WebApplication2.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using WebApplication2.DataAccess.Models;
 
 
@@ -21,10 +22,10 @@ namespace WebApplication2.Authorization
             var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
             if (allowAnonymous) return;
             var account = (Account)context.HttpContext.Items["User"];
-            if (account == null || (_roles.Any() && !_roles.Contains(account.Role))) { 
-                context.Result = new JsonResult(new { message = "Unauthorizated" })
-                { StatusCode = StatusCodes.Status401Unauthorized };
-            } 
+            if (account == null || (_roles.Any() && !_roles.Contains(account.Role)))
+            {
+                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
         }
     }
 }

@@ -180,7 +180,7 @@ namespace WebApplication2.Services
         private void revokeRefreshToken(RefreshToken token, string ipAddres, string reason = null, string replaceByToken= null)
         {
             token.Revoked = DateTime.UtcNow;
-            token.RevolkedByIp = ipAddres;
+            token.RevokedByIp = ipAddres;
             token.ReasonRevoked = reason;
             token.ReplacedByToken = replaceByToken;
         }

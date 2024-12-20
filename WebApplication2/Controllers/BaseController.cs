@@ -5,6 +5,6 @@ namespace WebApplication2.Controllers
     [Controller]
     public class BaseController : ControllerBase
     {
-        public Account Account => (Account)HttpContext.Items["Account"];
+        public Account Account => (Account)HttpContext.Items["User"];
     }
 }

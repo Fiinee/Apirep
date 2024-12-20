@@ -341,7 +341,7 @@ namespace WebApplication2.Migrations
                     b.Property<DateTime?>("Revoked")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("RevolkedByIp")
+                    b.Property<string>("RevokedByIp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Token")

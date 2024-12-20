@@ -4,6 +4,7 @@ using WebApplication2.Authorization;
 using WebApplication2.DataAccess.Models;
 using WebApplication2.DataAccess.Models.Accounts;
 using WebApplication2.DataAccess.Models.Accounts.BusinessLogic.Models.Accounts;
+using WebApplication2.Entities;
 
 namespace WebApplication2.Controllers
 {
@@ -104,7 +105,7 @@ namespace WebApplication2.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<AccountResponse>> GetById(int id)
         {
-            if (id != Account.Id && Account.Role != Role.Admin)
+           if (id != Account.Id && Account.Role != Role.Admin)
                 return Unauthorized(new { message = "Unauthorized" });
             var account = await _accountService.GetById(id);
             return Ok(account);
@@ -134,9 +135,14 @@ namespace WebApplication2.Controllers
         {
             if (id != Account.Id && Account.Role != Role.Admin)
                 return Unauthorized(new { message = "Unauthorized" });
-          
+
             await _accountService.Delete(id);
             return Ok(new { message = "Account deleted successfully" });
+          
+          
+
+
+
         }
 
     }

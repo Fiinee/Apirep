@@ -76,5 +76,17 @@
         <member name="M:WebApplication2.Migrations.Acc.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:WebApplication2.Migrations.Stef">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.Stef.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.Stef.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:WebApplication2.Migrations.Stef.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

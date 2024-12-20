@@ -9,6 +9,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Org.BouncyCastle.Crypto;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication2.Authorization
@@ -30,7 +31,7 @@ namespace WebApplication2.Authorization
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", account.Id.ToString()), new Claim(ClaimTypes.Role, account.Role.ToString()) }),
+                Subject = new System.Security.Claims.ClaimsIdentity(new[] { new Claim("id", account.Id.ToString()) }),
                 Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
             };
@@ -47,9 +48,10 @@ namespace WebApplication2.Authorization
                 Created = DateTime.UtcNow,
                 CreatedByIp = ipAddress
             };
-            
-            var tokenIsUnique = (await _wrapper.Accounts.Where(a => a.RefreshTokens.Any(t => t.Token == refreshToken.Token)).CountAsync()) == 0;
-            if (!tokenIsUnique) return await GenerateRefreshToken(ipAddress);
+
+            var tokenIsUnique = (await _wrapper.Accounts.AnyAsync(a => a.RefreshTokens.Any(t => t.Token == refreshToken.Token)));
+            if (tokenIsUnique)
+                return await GenerateRefreshToken(ipAddress);
             return refreshToken;
         }
 
@@ -67,8 +69,8 @@ namespace WebApplication2.Authorization
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ClockSkew = TimeSpan.Zero
-                }, out SecurityToken valiateToken);
-                var jwtToken = (JwtSecurityToken)valiateToken;
+                }, out SecurityToken valiatedToken);
+                var jwtToken = (JwtSecurityToken)valiatedToken;
                 var accountId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
                 return accountId;
             }

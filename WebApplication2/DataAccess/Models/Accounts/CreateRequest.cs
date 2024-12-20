@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WebApplication2.DataAccess.Models;
+using WebApplication2.Entities;
 
 namespace WebApplication2.DataAccess.Models.Accounts
 {

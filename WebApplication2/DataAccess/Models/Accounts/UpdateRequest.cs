@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApplication2.Entities;
 
 namespace WebApplication2.DataAccess.Models.Accounts
 {
@@ -9,8 +10,8 @@ namespace WebApplication2.DataAccess.Models.Accounts
         private string _role;
         private string _email;
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
+        
 
         [EnumDataType(typeof(Role))]
         public string Role
